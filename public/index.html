@@ -49,15 +49,18 @@
                 body: JSON.stringify(phone)
             }).then(responseData => {
                 console.log(responseData);
-                location.reload(); 
+                newTableView();
             }).catch(err => {
                 alert('not inserted')
             });
         })
+        function newTableView() {
+            fetch(phoneEndpoint).then(phonesData => {
+                phonesData.json().then(phonesTableView);
+            })
+        };
+        newTableView();
 
-        fetch(phoneEndpoint).then(phonesData => {
-            phonesData.json().then(phonesTableView);
-        })
         function phonesTableView(phones) {
             //show all
             let html = '';
@@ -131,7 +134,7 @@
                                 console.log(responseData);
                                 let htmlOne = '';
                                 document.getElementById('phone').innerHTML = htmlOne;
-                                location.reload(); 
+                                newTableView();
                             }).catch(err => {
                                 alert('not inserted')
                             });
@@ -150,7 +153,7 @@
                             body: JSON.stringify(phone)
                         }).then(responseData => {
                             console.log(responseData);
-                            location.reload();
+                            newTableView();
                         }).catch(err => {
                             alert('not inserted')
                         });
