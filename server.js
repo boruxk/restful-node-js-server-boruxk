@@ -62,6 +62,6 @@ app.delete('/phone/:id', (req, res) => {
     })
 });
 
-app.listen(PORT, () =>
+app.listen(process.env.PORT || PORT, () =>
     console.log(`App listening on port ${PORT}!`),
 );
